@@ -4,7 +4,8 @@ const layout = require("../views/layout");
 
 router.get("/", async (req, res, next) => {
   try {
-    res.send(layout(""));
+    // res.send(layout(""));
+    res.redirect('/wiki');
   } catch (error) { next(error) }
 });
 

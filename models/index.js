@@ -22,9 +22,18 @@ const Page = db.define('page', {
     status: {
         type: Sequelize.ENUM('open', 'closed')
         // defaultValue: 'open'
-    }
-
+    },
 });
+
+function generateSlug (title) {
+    const slug =  title.replace(/\s+/g, '_').replace(/\W/g, '')
+    return slug;
+}
+
+Page.beforeValidate((pageInstance) => {
+    pageInstance.slug = generateSlug(pageInstance.title)
+})
+;
 
 const User = db.define('user', {
     name: {
@@ -42,7 +51,7 @@ const User = db.define('user', {
 
 module.exports = {
   db,
-  User, 
+  User,
   Page
 }
 

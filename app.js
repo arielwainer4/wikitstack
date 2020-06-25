@@ -1,14 +1,14 @@
 const express = require('express');
-const morgan = require('morgan');
+const morgan = require("morgan");
+const router = require("./routes/routes");
 
 const app = express();
-app.use(morgan(“dev”));
-app.use(express.static(__dirname + “/public”));
+app.use(morgan("dev"));
+app.use(express.static(__dirname + "/public/stylesheets"));
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', function (req, res) {
-    res.send('hello world')
-  })
+
+app.use('/', router)
 
 
  const PORT = 4001;
